@@ -1,6 +1,10 @@
 pluginManagement {
-    plugins {
-        id 'net.fabricmc.fabric-loom' version loom_version
+    resolutionStrategy {
+        eachPlugin {
+            if (requested.id.id == 'net.fabricmc.fabric-loom') {
+                useModule("net.fabricmc:fabric-loom:${requested.version}")
+            }
+        }
     }
     repositories {
         maven { url = "https://maven.fabricmc.net/" }
