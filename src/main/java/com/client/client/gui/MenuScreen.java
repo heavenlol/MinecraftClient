@@ -22,8 +22,7 @@ public class MenuScreen extends Screen {
 
     @Override
     public void renderBackground(DrawContext context, int mouseX, int mouseY, float delta) {
-        this.applyBlur(delta);
-        this.renderDarkening(context);
+        this.renderInGameBackground(context);
     }
 
     @Override
