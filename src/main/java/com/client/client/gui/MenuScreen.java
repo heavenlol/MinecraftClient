@@ -14,15 +14,11 @@ public class MenuScreen extends Screen {
 
     @Override
     public void render(GuiGraphics graphics, int mouseX, int mouseY, float delta) {
+        this.renderTransparentBackground(graphics);
         super.render(graphics, mouseX, mouseY, delta);
         int x = (this.width - 200) / 2;
         int y = (this.height - 200) / 2;
         graphics.blit(BACKGROUND_TEXTURE, x, y, 0, 0, 200, 200, 200, 200);
-    }
-
-    @Override
-    public void renderBackground(GuiGraphics graphics, int mouseX, int mouseY, float delta) {
-        this.renderTransparentBackground(graphics);
     }
 
     @Override
