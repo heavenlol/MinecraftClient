@@ -1,28 +1,33 @@
 package com.client.client.gui;
 
-import net.minecraft.client.gui.GuiGraphics;
-import net.minecraft.client.gui.screens.Screen;
-import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.client.gui.DrawContext;
+import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.text.Text;
+import net.minecraft.util.Identifier;
 
 public class MenuScreen extends Screen {
-    private static final ResourceLocation BACKGROUND_TEXTURE = ResourceLocation.fromNamespaceAndPath("minecraftclient", "textures/gui/menu_bg.png");
+    private static final Identifier BACKGROUND_TEXTURE = Identifier.of("minecraftclient", "textures/gui/menu_bg.png");
 
     public MenuScreen() {
-        super(Component.literal("Menu"));
+        super(Text.literal("Menu"));
     }
 
     @Override
-    public void render(GuiGraphics graphics, int mouseX, int mouseY, float delta) {
-        this.renderTransparentBackground(graphics);
-        super.render(graphics, mouseX, mouseY, delta);
+    public void render(DrawContext context, int mouseX, int mouseY, float delta) {
+        this.renderBackground(context, mouseX, mouseY, delta);
+        super.render(context, mouseX, mouseY, delta);
         int x = (this.width - 200) / 2;
         int y = (this.height - 200) / 2;
-        graphics.blit(BACKGROUND_TEXTURE, x, y, 0, 0, 200, 200, 200, 200);
+        context.drawTexture(BACKGROUND_TEXTURE, x, y, 0, 0, 200, 200, 200, 200);
     }
 
     @Override
-    public boolean isPauseScreen() {
+    public void renderBackground(DrawContext context, int mouseX, int mouseY, float delta) {
+        this.renderInGameBackground(context);
+    }
+
+    @Override
+    public boolean shouldPause() {
         return false;
     }
 }
